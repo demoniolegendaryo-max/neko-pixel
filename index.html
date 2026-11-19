@@ -52,8 +52,13 @@
     .card .number { color:#c8bbaa; font-size:.8rem; letter-spacing:.13em; }
     h3 { margin:11px 0 8px; font-size:1.25rem; }
     .card p { color:#c2bfc0; line-height:1.6; margin:0 0 18px; }
-    .card-action { display:inline-block; margin-top:15px; padding:10px 15px; border:1px solid #8f897f; border-radius:999px; color:#eee7df; text-decoration:none; font-weight:700; font-size:.9rem; }
+    .card-action { display:inline-block; cursor:pointer; font-family:inherit; margin-top:15px; padding:10px 15px; border:1px solid #8f897f; border-radius:999px; color:#eee7df; text-decoration:none; font-weight:700; font-size:.9rem; }
     .card-action:hover { background:#e4ddd4; color:#171618; }
+    .expand-content { margin-top:16px; background:#17171aef; border:1px solid #ffffff24; border-radius:18px; padding:22px; }
+    .expand-content[hidden] { display:none; }
+    .expand-content h3 { margin-top:0; }
+    .expand-content p,.expand-content li { color:#d0cdca; line-height:1.65; }
+    .expand-content ul { padding-left:21px; }
     .panel { margin-top:16px; background:#17171aeF; border:1px solid #ffffff24; border-radius:18px; padding:22px; }
     .panel h3 { margin-top:0; }
     .panel p,.panel li { color:#d0cdca; line-height:1.65; }
@@ -75,7 +80,7 @@
 <body>
   <header class="wrap">
     <a class="brand" href="#inicio">NEKO <span>PIXEL</span></a>
-    <nav aria-label="Navegación principal"><a href="#recursos">Recursos</a><a href="#juegos">Juegos</a><a href="#contacto">Contacto</a></nav>
+    <nav aria-label="Navegación principal"><a href="#recursos">Recursos</a><a href="#recursos" id="nav-juegos">Juegos</a><a href="#contacto">Contacto</a></nav>
   </header>
   <main>
     <section class="hero wrap" id="inicio">
@@ -90,31 +95,22 @@
     <section class="wrap" id="recursos">
       <div class="section-head"><h2>Recursos para tu partida</h2><p>Elige lo que buscas y escríbenos por WhatsApp para pedirlo.</p></div>
       <div class="grid">
-        <article class="card"><div class="number">01 / PC Y MÓVIL</div><h3>Optimizaciones</h3><p>Consejos prácticos para que tus dispositivos y juegos funcionen mejor.</p><span class="free">Gratis</span><br><a class="card-action" href="#optimizaciones">Ver consejos</a></article>
-        <article class="card"><div class="number">02 / GAMING</div><h3>Juegos</h3><p>Minecraft y Free Fire con enlaces para móvil y para jugar en PC.</p><span class="free">Gratis</span><br><a class="card-action" href="#juegos">Ver juegos</a></article>
-        <article class="card"><div class="number">03 / CONFIGURACIÓN</div><h3>Sensibilidades</h3><p>Próximamente: recomendaciones de sensibilidad para tus juegos.</p><span class="free">Gratis</span><br><a class="card-action" href="https://wa.me/573132748008?text=Hola%2C%20quiero%20consultar%20sensibilidades%20para%20un%20juego">Pedir por WhatsApp</a></article>
-        <article class="card"><div class="number">04 / MINECRAFT</div><h3>Packs de texturas</h3><p>Próximamente agregamos tus packs y sus enlaces de descarga.</p><span class="free">Gratis</span><br><a class="card-action" href="https://wa.me/573132748008?text=Hola%2C%20quiero%20consultar%20packs%20de%20texturas">Consultar</a></article>
+        <article class="card"><div class="number">01 / PC Y MÓVIL</div><h3>Optimizaciones</h3><p>Consejos prácticos para que tus dispositivos y juegos funcionen mejor.</p><span class="free">Gratis</span><br><button class="card-action" type="button" aria-expanded="false" aria-controls="detalle-optimizaciones" data-toggle="detalle-optimizaciones">Ver consejos</button></article>
+        <article class="card"><div class="number">02 / GAMING</div><h3>Juegos</h3><p>Minecraft y Free Fire con enlaces para móvil y para jugar en PC.</p><span class="free">Gratis</span><br><button class="card-action" type="button" aria-expanded="false" aria-controls="detalle-juegos" data-toggle="detalle-juegos">Ver juegos</button></article>
+        <article class="card"><div class="number">03 / CONFIGURACIÓN</div><h3>Sensibilidades</h3><p>Próximamente: recomendaciones de sensibilidad para tus juegos.</p><span class="free">Gratis</span><br><button class="card-action" type="button" aria-expanded="false" aria-controls="detalle-sensibilidades" data-toggle="detalle-sensibilidades">Ver información</button></article>
+        <article class="card"><div class="number">04 / MINECRAFT</div><h3>Packs de texturas</h3><p>Próximamente encontrarás packs de texturas para Minecraft.</p><span class="free">Gratis</span><br><button class="card-action" type="button" aria-expanded="false" aria-controls="detalle-texturas" data-toggle="detalle-texturas">Ver información</button></article>
       </div>
-    </section>
-    <section class="wrap" id="optimizaciones">
-      <div class="section-head"><h2>Optimización para PC y móvil</h2><p>Ajustes seguros que puedes probar sin instalar “aceleradores” desconocidos.</p></div>
-      <div class="grid">
-        <article class="card"><h3>En PC</h3><ul><li>Cierra programas que no estés usando antes de abrir el juego.</li><li>Actualiza Windows y los controladores desde Windows Update o la página oficial del fabricante.</li><li>Deja espacio libre en el disco y usa los ajustes gráficos que tu equipo pueda mantener estables.</li><li>Evita borrar archivos del sistema o instalar optimizadores de procedencia dudosa.</li></ul></article>
-        <article class="card"><h3>En Android</h3><ul><li>Cierra apps que no necesites y reinicia el teléfono si lleva mucho tiempo encendido.</li><li>Deja almacenamiento libre; instala actualizaciones del sistema desde Ajustes.</li><li>Para jugar, desactiva el ahorro de batería si limita el rendimiento y evita jugar mientras el teléfono se recalienta.</li><li>No instales APKs de “boosters” desconocidos ni desactives protecciones del sistema.</li></ul></article>
-      </div>
-    </section>
-    <section class="wrap" id="juegos">
-      <div class="section-head"><h2>Juegos</h2><p>Enlaces a páginas oficiales o tiendas conocidas. Revisa disponibilidad y requisitos en tu dispositivo.</p></div>
-      <article class="panel"><h3>Minecraft</h3><p>La prueba oficial para PC está disponible desde Minecraft.net. La edición completa se compra; en Android revisa la ficha del juego en Google Play.</p><div class="link-grid">
-        <a href="https://www.minecraft.net/en-us/download" target="_blank" rel="noopener">Minecraft para PC<small>Descarga oficial / launcher</small></a>
+      <div class="expand-content" id="detalle-optimizaciones" hidden><h3>Optimización para PC y Android</h3><p>Consejos seguros, sin instalar aceleradores desconocidos:</p><ul><li><strong>PC:</strong> cierra programas que no uses, actualiza Windows y los controladores desde fuentes oficiales, y deja espacio libre en el disco.</li><li><strong>Android:</strong> cierra apps que no necesites, mantén espacio libre y actualiza desde Ajustes. Evita jugar si el teléfono se recalienta.</li><li>No borres archivos del sistema ni instales APKs o programas de optimización de origen dudoso.</li></ul></div>
+      <div class="expand-content" id="detalle-juegos" hidden><h3>Minecraft y Free Fire</h3><div class="link-grid">
+        <a href="https://www.minecraft.net/en-us/download" target="_blank" rel="noopener">Minecraft para PC<small>Descarga oficial</small></a>
         <a href="https://www.minecraft.net/en-us/free-trial" target="_blank" rel="noopener">Prueba de Minecraft<small>Prueba oficial</small></a>
-        <a href="https://play.google.com/store/search?q=minecraft&c=apps" target="_blank" rel="noopener">Minecraft para Android<small>Buscar en Google Play</small></a>
-      </div></article>
-      <article class="panel"><h3>Free Fire</h3><p>Free Fire está pensado para móviles. En PC puedes revisar la opción de Google Play Games o usar un emulador conocido; confirma requisitos y disponibilidad.</p><div class="link-grid">
-        <a href="https://ff.garena.com/" target="_blank" rel="noopener">Free Fire móvil<small>Página oficial de Garena</small></a>
+        <a href="https://play.google.com/store/search?q=minecraft&c=apps" target="_blank" rel="noopener">Minecraft Android<small>Buscar en Google Play</small></a>
+        <a href="https://ff.garena.com/" target="_blank" rel="noopener">Free Fire móvil<small>Página de Garena</small></a>
         <a href="https://play.google.com/pc-store/games/details?id=com.dts.freefiremax" target="_blank" rel="noopener">Free Fire en PC<small>Google Play Games</small></a>
         <a href="https://www.bluestacks.com/apps/action/free-fire-battlegrounds-on-pc.html" target="_blank" rel="noopener">Free Fire con emulador<small>Guía de BlueStacks</small></a>
-      </div></article>
+      </div></div>
+      <div class="expand-content" id="detalle-sensibilidades" hidden><h3>Sensibilidades</h3><p>Próximamente encontrarás recomendaciones de sensibilidad para tus juegos.</p></div>
+      <div class="expand-content" id="detalle-texturas" hidden><h3>Packs de texturas</h3><p>Aún no hay packs cargados. Pronto encontrarás aquí los enlaces de descarga y las versiones compatibles.</p></div>
     </section>
     <section class="wrap" id="minecraft">
       <div class="minecraft"><div><h2>Minecraft para PC</h2><p>¿Quieres probarlo? Minecraft ofrece una prueba gratuita oficial. El juego completo para PC no es gratis; evita descargas no oficiales.</p></div><a class="button" href="https://www.minecraft.net/en-us/free-trial" target="_blank" rel="noopener">Ver prueba oficial</a></div>
@@ -125,5 +121,22 @@
     </section>
   </main>
   <footer><div class="wrap"><strong>Neko Pixel</strong><p>Recursos y recomendaciones gamer gratis.</p><p>Minecraft es una marca de Mojang. Esta página no está afiliada con Mojang ni Microsoft.</p></div></footer>
+  <script>
+    document.getElementById('nav-juegos').addEventListener('click', function() {
+      var button = document.querySelector('[data-toggle=detalle-juegos]');
+      if (button.getAttribute('aria-expanded') !== 'true') button.click();
+    });
+    document.querySelectorAll('[data-toggle]').forEach(function(button) {
+      button.addEventListener('click', function() {
+        var panel = document.getElementById(button.getAttribute('aria-controls'));
+        var willOpen = panel.hidden;
+        panel.hidden = !willOpen;
+        button.setAttribute('aria-expanded', String(willOpen));
+        button.textContent = willOpen ? 'Ocultar' : button.dataset.label || 'Ver información';
+        if (willOpen) panel.scrollIntoView({behavior: 'smooth', block: 'nearest'});
+      });
+      button.dataset.label = button.textContent;
+    });
+  </script>
 </body>
 </html>
