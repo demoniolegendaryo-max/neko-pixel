@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Neko Pixel — Tu mundo gamer</title>
+  <meta name="description" content="Optimización para PC y móviles, recomendaciones de juegos, sensibilidades y packs de texturas para Minecraft. Recursos gratis.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Neko Pixel — Tu mundo gamer">
+  <meta property="og:description" content="Recursos gamer gratis para PC y móviles: optimizaciones, juegos, sensibilidades y Minecraft.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#171719">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Neko Pixel">
+  <style>
+    :root { color-scheme: dark; --bg:#111113; --panel:#1b1b1f; --ink:#f4f1ed; --muted:#aaa7a5; --line:#39383b; --accent:#d1c7bb; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--ink); font-family:system-ui,-apple-system,"Segoe UI",sans-serif; background-color:#111113; background-image:linear-gradient(90deg,rgba(12,12,14,.94),rgba(12,12,14,.76) 48%,rgba(12,12,14,.83)),url("fondo.jpg"); background-size:cover; background-position:center top; background-attachment:fixed; }
+    a { color:inherit; }
+    .wrap { width:min(1080px,calc(100% - 36px)); margin:auto; }
+    header { min-height:74px; display:flex; align-items:center; justify-content:space-between; gap:16px; border-bottom:1px solid #ffffff18; }
+    .brand { text-decoration:none; font-weight:850; letter-spacing:.04em; font-size:1.2rem; }
+    .brand span { color:var(--accent); }
+    nav { display:flex; gap:22px; color:#d0ccca; font-size:.92rem; }
+    nav a { text-decoration:none; }
+    nav a:hover { color:white; }
+    .hero { min-height:470px; display:grid; grid-template-columns:1.05fr .95fr; align-items:center; gap:36px; padding:62px 0 72px; }
+    .eyebrow { color:#c6b9a9; text-transform:uppercase; letter-spacing:.18em; font-size:.74rem; font-weight:750; }
+    h1 { font-size:clamp(3rem,8vw,5.8rem); line-height:.95; margin:16px 0; letter-spacing:-.055em; }
+    h1 span { color:#cfc5ba; }
+    .hero p { max-width:520px; color:#d0cdca; line-height:1.7; font-size:1.08rem; }
+    .buttons { display:flex; flex-wrap:wrap; gap:12px; margin-top:26px; }
+    .button { display:inline-block; text-decoration:none; border-radius:999px; padding:13px 19px; font-weight:750; background:#e4ddd4; color:#171618; }
+    .button.secondary { background:transparent; border:1px solid #777276; color:var(--ink); }
+    .art { min-height:330px; border:1px solid #ffffff20; border-radius:24px; overflow:hidden; position:relative; display:grid; place-items:center; background:linear-gradient(145deg,#09090b 0%,#333237 47%,#17171a 100%); box-shadow:0 24px 80px #0008; }
+    .art:before,.art:after { content:""; position:absolute; inset:-20%; background:repeating-linear-gradient(115deg,transparent 0 38px,#ffffff08 39px 41px,transparent 42px 82px); transform:rotate(-8deg); }
+    .art:after { inset:0; background:radial-gradient(ellipse at 52% 50%,#c7c1bb26,transparent 42%),linear-gradient(0deg,#0009,transparent 70%); }
+    .silhouette { width:145px; height:212px; position:relative; z-index:1; filter:drop-shadow(0 16px 25px #000); }
+    .hood { position:absolute; top:0; left:24px; width:96px; height:112px; background:linear-gradient(145deg,#e6e0d8,#77747a 60%,#272629); clip-path:polygon(50% 0,100% 33%,83% 100%,18% 94%,0 34%); }
+    .face { position:absolute; top:53px; left:49px; width:47px; height:44px; background:#111114; clip-path:polygon(8% 0,93% 0,75% 100%,20% 88%); }
+    .body { position:absolute; top:92px; left:9px; width:128px; height:120px; background:linear-gradient(105deg,#39383c,#b1aaa3 47%,#343337 72%); clip-path:polygon(31% 0,70% 0,100% 100%,0 100%); }
+    .blade { position:absolute; z-index:2; width:8px; height:235px; left:114px; top:-19px; transform:rotate(29deg); background:linear-gradient(90deg,#57545a,#efebe6,#77737a); border-radius:5px; }
+    .art-label { position:absolute; z-index:3; bottom:22px; left:24px; font-size:.78rem; letter-spacing:.19em; text-transform:uppercase; color:#e4ded7; }
+    section { padding:42px 0; }
+    .section-head { margin-bottom:22px; }
+    h2 { font-size:clamp(1.8rem,4vw,2.6rem); margin:0 0 8px; letter-spacing:-.035em; }
+    .section-head p,.note { color:var(--muted); line-height:1.65; margin:0; }
+    .grid { display:grid; grid-template-columns:repeat(2,1fr); gap:15px; }
+    .card { background:linear-gradient(145deg,#242327e8,#17171aeb); border:1px solid #ffffff18; border-radius:18px; padding:23px; }
+    .card .number { color:#c8bbaa; font-size:.8rem; letter-spacing:.13em; }
+    h3 { margin:11px 0 8px; font-size:1.25rem; }
+    .card p { color:#c2bfc0; line-height:1.6; margin:0 0 18px; }
+    .free { display:inline-block; border:1px solid #8f897f; color:#e3d9cd; padding:5px 10px; border-radius:999px; font-size:.8rem; font-weight:700; }
+    .minecraft { display:grid; grid-template-columns:1fr auto; align-items:center; gap:24px; background:linear-gradient(120deg,#28272a,#171719); border:1px solid #ffffff20; border-radius:20px; padding:25px; }
+    .minecraft p { color:#c5c2c1; line-height:1.65; margin:8px 0 0; }
+    .minecraft .button { white-space:nowrap; }
+    footer { margin-top:24px; padding:30px 0 48px; border-top:1px solid #ffffff1a; color:#aba8a7; font-size:.9rem; }
+    footer p { margin:5px 0; }
+    @media (max-width:720px) { nav { gap:12px; font-size:.82rem; } .hero { grid-template-columns:1fr; padding:52px 0; gap:28px; } .art { min-height:260px; } .grid { grid-template-columns:1fr; } .minecraft { grid-template-columns:1fr; } .minecraft .button { justify-self:start; } }
+    @media (max-width:420px) { .wrap { width:min(100% - 26px,1080px); } nav { gap:9px; } nav a { font-size:.76rem; } header { min-height:64px; } }
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <a class="brand" href="#inicio">NEKO <span>PIXEL</span></a>
+    <nav aria-label="Navegación principal"><a href="#recursos">Recursos</a><a href="#minecraft">Minecraft</a><a href="#contacto">Contacto</a></nav>
+  </header>
+  <main>
+    <section class="hero wrap" id="inicio">
+      <div>
+        <div class="eyebrow">Tu mundo gamer, a tu manera</div>
+        <h1>NEKO<br><span>PIXEL</span></h1>
+        <p>Un rincón para gamers de PC y móvil: optimizaciones, recomendaciones, sensibilidades y texturas para Minecraft. <strong>Todo gratis.</strong></p>
+        <div class="buttons"><a class="button" href="https://wa.me/573132748008?text=Hola%2C%20vengo%20de%20Neko%20Pixel" target="_blank" rel="noopener">Escríbenos por WhatsApp</a><a class="button secondary" href="#recursos">Ver recursos</a></div>
+      </div>
+      <div class="art" role="img" aria-label="Ilustración abstracta de un guerrero encapuchado en tonos monocromáticos"><div class="silhouette"><div class="hood"></div><div class="face"></div><div class="body"></div><div class="blade"></div></div><div class="art-label">Anime · Gaming · Pixel</div></div>
+    </section>
+    <section class="wrap" id="recursos">
+      <div class="section-head"><h2>Recursos para tu partida</h2><p>Elige lo que buscas y escríbenos por WhatsApp para pedirlo.</p></div>
+      <div class="grid">
+        <article class="card"><div class="number">01 / PC Y MÓVIL</div><h3>Optimizaciones</h3><p>Consejos y ajustes para ayudar a que tus dispositivos y juegos funcionen mejor.</p><span class="free">Gratis</span></article>
+        <article class="card"><div class="number">02 / GAMING</div><h3>Juegos y recomendaciones</h3><p>Ideas de juegos para PC y móviles, más orientación para encontrar sus fuentes oficiales.</p><span class="free">Gratis</span></article>
+        <article class="card"><div class="number">03 / CONFIGURACIÓN</div><h3>Sensibilidades</h3><p>Ajustes y sugerencias para encontrar una sensibilidad cómoda en tus juegos.</p><span class="free">Gratis</span></article>
+        <article class="card"><div class="number">04 / MINECRAFT</div><h3>Packs de texturas</h3><p>Recomendaciones de packs de texturas para personalizar tu mundo de Minecraft.</p><span class="free">Gratis</span></article>
+      </div>
+    </section>
+    <section class="wrap" id="minecraft">
+      <div class="minecraft"><div><h2>Minecraft para PC</h2><p>¿Quieres probarlo? Minecraft ofrece una prueba gratuita oficial. El juego completo para PC no es gratis; evita descargas no oficiales.</p></div><a class="button" href="https://www.minecraft.net/en-us/free-trial" target="_blank" rel="noopener">Ver prueba oficial</a></div>
+    </section>
+    <section class="wrap" id="contacto">
+      <div class="section-head"><h2>¿Qué estás buscando?</h2><p>Cuéntanos qué juego usas y si juegas en PC o móvil; te orientamos por WhatsApp.</p></div>
+      <a class="button" href="https://wa.me/573132748008?text=Hola%2C%20vengo%20de%20Neko%20Pixel" target="_blank" rel="noopener">Contactar a Neko Pixel</a>
+    </section>
+  </main>
+  <footer><div class="wrap"><strong>Neko Pixel</strong><p>Recursos y recomendaciones gamer gratis.</p><p>Minecraft es una marca de Mojang. Esta página no está afiliada con Mojang ni Microsoft.</p></div></footer>
+</body>
+</html>
