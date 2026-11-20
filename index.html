@@ -66,9 +66,11 @@
           <label class="analizador-field">Almacenamiento<select name="disco"><option value="unknown">No sé</option><option value="hdd">Disco duro (HDD)</option><option value="ssd">SSD</option></select></label>
           <label class="analizador-field">Resolución de juego<select name="resolucion"><option value="unknown">No sé</option><option value="720">720p</option><option value="1080">1080p</option><option value="1440">1440p</option><option value="2160">4K</option></select></label>
           <label class="analizador-field">¿Qué prefieres?<select name="prioridad"><option value="fluidez">Más fluidez</option><option value="equilibrio">Equilibrio</option><option value="calidad">Mejor calidad visual</option></select></label>
-          <label class="analizador-field">Meta de FPS<select name="fps"><option value="unknown">No sé</option><option value="30">30 FPS</option><option value="60">60 FPS</option><option value="120">120 FPS o más</option></select></label>
+          <label class="analizador-field">FPS actuales (míralos dentro del juego)<select name="fpsActuales"><option value="unknown">No los he medido</option><option value="30">Menos de 30</option><option value="45">Entre 30 y 59</option><option value="60">Entre 60 y 89</option><option value="90">Entre 90 y 119</option><option value="120">120 o más</option></select></label>
+          <label class="analizador-field">Meta de FPS<select name="fps"><option value="30">30 FPS</option><option value="60" selected>60 FPS</option><option value="120">120 FPS o más</option></select></label>
+          <label class="analizador-field">Problema que notas<select name="problema"><option value="none">Ninguno en especial</option><option value="drops">Caídas o tirones</option><option value="heat">Se calienta / ventiladores fuertes</option><option value="load">Cargas lentas</option></select></label>
         </div><div class="analizador-actions"><button type="submit" class="card-action">Generar recomendaciones</button><button type="reset" class="card-action">Limpiar</button></div>
-      </form><p class="analizador-note">Las sugerencias son orientativas: no detectamos tu equipo, no medimos FPS ni garantizamos compatibilidad. No se modifican ajustes automáticamente. Los datos permanecen en tu navegador.</p>
+      </form><p class="analizador-note">La página no puede leer los FPS de otro juego ni detectar tu equipo. Elige el rango que ves con el contador de FPS del juego; analizamos ese dato y damos sugerencias, sin cambiar nada en tu PC.</p>
       <div id="neko-resultado" class="analizador-result" aria-live="polite"><h3>Tu resultado aparecerá aquí</h3><p>Selecciona lo que sepas y toca «Generar recomendaciones».</p></div></div>
     </section>
     <section class="section wrap" id="contacto"><div class="contact"><div><div class="kicker">¿Buscas algo en particular?</div><h2>Hablemos de tu partida</h2><p>Cuéntanos qué juego usas y si juegas en PC, emulador o móvil.</p></div><a class="button" href="https://wa.me/573132748008?text=Hola%2C%20vengo%20de%20Neko%20Pixel" target="_blank" rel="noopener">Escribir por WhatsApp <span aria-hidden="true">↗</span></a></div></section>
@@ -92,9 +94,11 @@
     form.addEventListener('submit', function (event) {
       event.preventDefault();
       var v = new FormData(form);
-      var game = v.get('juego'), ram = v.get('ram'), cpu = v.get('cpu'), gpu = v.get('gpu'), disk = v.get('disco'), res = v.get('resolucion'), priority = v.get('prioridad'), fps = v.get('fps');
+      var game = v.get('juego'), ram = v.get('ram'), cpu = v.get('cpu'), gpu = v.get('gpu'), disk = v.get('disco'), res = v.get('resolucion'), priority = v.get('prioridad'), fps = v.get('fps'), current = v.get('fpsActuales'), problem = v.get('problema');
       var name = game === 'minecraft' ? 'Minecraft para PC' : game === 'freefire' ? 'Free Fire en emulador' : 'tu juego de PC';
       var tips = [];
+      if (current !== 'unknown' && Number(current) < Number(fps)) tips.push('Tu rango actual está por debajo de la meta elegida. Prueba bajar primero sombras, reflejos y efectos; luego vuelve a mirar el contador en la misma zona.');
+      else if (current !== 'unknown') tips.push('Tu rango actual alcanza la meta seleccionada. Para mantener estabilidad, evita subir varios ajustes a la vez y vuelve a comprobar en una escena exigente.');
       if (priority === 'fluidez') tips.push('Empieza con gráficos bajos o medios; reduce primero sombras y efectos.');
       else if (priority === 'equilibrio') tips.push('Empieza con calidad media y cambia un ajuste a la vez hasta encontrar una imagen cómoda y estable.');
       else tips.push('Prueba una calidad más alta poco a poco. Si se presentan tirones, reduce sombras y efectos antes de cambiar todo.');
@@ -105,16 +109,20 @@
       if (res === '1440' || res === '2160') tips.push('Si hay caídas, prueba reducir la resolución o activar el escalado disponible en el juego.');
       if (game === 'minecraft') tips.push('En Minecraft, prueba reducir la distancia de renderizado y desactivar shaders si los usas. Las opciones dependen de la edición.');
       if (game === 'freefire') tips.push('En el emulador, prueba una resolución y gráficos moderados. No asignes toda la memoria del PC al emulador.');
-      if (fps === '120') tips.push('120 FPS dependen del juego, el equipo y la pantalla; no se pueden asegurar con esta guía.');
-      else if (fps === '60') tips.push('Si 60 FPS no son estables, reduce un ajuste a la vez o limita los FPS a un valor que tu equipo mantenga.');
+      if (problem === 'drops') tips.push('Para tirones, baja un ajuste cada vez, cierra aplicaciones innecesarias y comprueba que el juego no esté descargando o actualizando en segundo plano.');
+      if (problem === 'heat') tips.push('Si se calienta, detén la partida si la temperatura es excesiva, despeja las rejillas y revisa ventilación. No desactives protecciones térmicas.');
+      if (problem === 'load') tips.push('Para cargas lentas, libera espacio y cierra tareas que usen el disco. Instalar en SSD puede reducir cargas, pero no garantiza más FPS.');
+      if (fps === '120') tips.push('120 FPS dependen del juego, el equipo y una pantalla compatible; no se pueden asegurar con esta guía.');
+      else if (fps === '60') tips.push('Si no mantienes 60 FPS, reduce un ajuste a la vez o limita los FPS a un valor estable.');
       if (ram === 'unknown' || cpu === 'unknown' || gpu === 'unknown') tips.push('Si no conoces algún componente, puedes revisarlo en la información del sistema de tu PC y volver a completar el formulario.');
       tips.push('Compara el rendimiento en la misma zona del juego y revisa las temperaturas. Usa actualizaciones y controladores de fuentes oficiales.');
       result.replaceChildren();
-      var h = document.createElement('h3'); h.textContent = 'Recomendaciones para ' + name; result.appendChild(h);
+      var h = document.createElement('h3'); h.textContent = 'Análisis de FPS y ajustes para ' + name; result.appendChild(h);
+      var status = document.createElement('p'); status.textContent = 'Rango indicado: ' + (current === 'unknown' ? 'sin dato' : current + ' FPS aprox.') + ' · Meta: ' + fps + ' FPS'; result.appendChild(status);
       var list = document.createElement('ul'); tips.forEach(function(tip){var li = document.createElement('li');li.textContent = tip;list.appendChild(li)}); result.appendChild(list);
       var note = document.createElement('p'); note.textContent = 'Son puntos de partida, no una medición. Cada juego y equipo puede responder distinto.'; result.appendChild(note);
       var copy = document.createElement('button'); copy.type='button';copy.className='card-action';copy.textContent='Copiar recomendaciones';
-      copy.addEventListener('click', async function(){try {await navigator.clipboard.writeText(h.textContent + '\n' + tips.map(function(t){return '• '+t}).join('\n') + '\n' + note.textContent); copy.textContent='Copiado';} catch(e) {copy.textContent='No se pudo copiar; selecciona el texto';}}); result.appendChild(copy);
+      copy.addEventListener('click', async function(){try {await navigator.clipboard.writeText(h.textContent + '\n' + status.textContent + '\n' + tips.map(function(t){return '• '+t}).join('\n') + '\n' + note.textContent); copy.textContent='Copiado';} catch(e) {copy.textContent='No se pudo copiar; selecciona el texto';}}); result.appendChild(copy);
     });
   })();
   </script>
