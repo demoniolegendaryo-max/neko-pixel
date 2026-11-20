@@ -3,7 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#07121f">
+  <meta name="theme-color" content="#171719">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./icon-192.png">
   <title>Neko Pixel — Tu mundo gamer</title>
   <meta name="description" content="Guías gamer gratis para PC y móvil: optimización, Minecraft, Free Fire y packs de texturas.">
   <meta property="og:type" content="website">
@@ -24,12 +26,24 @@
     .analizador-result h3{margin:0 0 8px}.analizador-result p{color:#d0ccca}.analizador-result li{margin-bottom:8px;color:#d0ccca}
     .analizador-note{color:#aaa7a5;font-size:.88rem;line-height:1.6;margin:16px 0 0}
     @media(max-width:600px){.analizador-grid{grid-template-columns:1fr}.analizador-box{padding:19px}.analizador-actions button{width:100%}}
-</style>
+
+    .tool-panel{margin-top:18px;padding:22px;border:1px solid #777276;border-radius:16px;background:linear-gradient(145deg,#242327e8,#17171aeb)}
+    .tool-panel h3{margin:0 0 8px}.tool-panel p,.tool-panel li{color:#d0ccca;line-height:1.65}
+    .tool-panel .link-grid{margin-top:14px}
+    .csv-picker{display:block;margin-top:12px;padding:16px;border:1px dashed #aaa7a5;border-radius:12px;background:#111113;color:#f4f1ed}
+    .csv-result{margin-top:14px;padding:16px;border:1px solid #39383b;border-radius:12px;background:#111113;color:#f4f1ed;line-height:1.7}
+    .csv-result:empty{display:none}
+    .guide-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}
+    .guide-box{padding:16px;border:1px solid #ffffff18;border-radius:12px;background:#111113}
+    .guide-box h4{margin:0 0 8px;color:#e3d9cd}.guide-box p{margin:0;color:#d0ccca;line-height:1.65}
+    @media(max-width:600px){.guide-grid{grid-template-columns:1fr}.tool-panel{padding:18px}}
+
+  </style>
 </head>
 <body>
   <div class="topbar"><header class="wrap navrow">
     <a class="brand" href="#inicio" aria-label="Neko Pixel, inicio"><span class="brand-mark">N</span><span>NEKO <em>PIXEL</em></span></a>
-    <nav aria-label="Navegación principal"><a href="#inicio">Inicio</a><a href="#recursos" data-nav="detalle-optimizaciones">Optimización</a><a href="#recursos" data-nav="detalle-juegos">Juegos</a><a href="#analizador">Analizador</a><a href="#recursos" data-nav="detalle-texturas">Texturas</a><a class="nav-cta" href="#contacto">Contacto</a></nav>
+    <nav aria-label="Navegación principal"><a href="#inicio">Inicio</a><a href="#recursos" data-nav="detalle-optimizaciones">Optimización</a><a href="#recursos" data-nav="detalle-juegos">Juegos</a><a href="#analizador">Analizador</a><a href="#medir-fps">Medir FPS</a><a href="#recursos" data-nav="detalle-texturas">Texturas</a><a class="nav-cta" href="#contacto">Contacto</a></nav>
   </header></div>
   <main>
     <section class="hero wrap" id="inicio">
@@ -56,7 +70,7 @@
       <div class="expand-content" id="detalle-texturas" hidden><h3>Packs de texturas</h3><p>Este espacio queda listo para tus packs. Cada botón podrá abrir directamente el enlace correspondiente.</p><div class="notice">Al agregarlos pondremos también el nombre del pack y su versión compatible, si esa información aparece en la página de descarga.</div></div>
     </section>
     <section class="section wrap" id="analizador">
-      <div class="section-head"><div class="kicker">Ajustes para tu partida</div><h2>Analizador para PC</h2><p>Elige tu juego y los datos que conozcas. Recibirás ideas para ajustar los gráficos, sin instalar programas.</p></div>
+      <div class="section-head"><div class="kicker">Ajustes para tu partida</div><h2>Analizador para PC</h2><p>Elige tu juego y los datos que conozcas. Recibirás ideas para ajustar los gráficos, sin instalar programas. <a href="#guia-pc">¿No sabes dónde mirar los componentes?</a></p></div>
       <div class="analizador-box"><form id="neko-analizador">
         <div class="analizador-grid">
           <label class="analizador-field">Juego<select name="juego"><option value="minecraft">Minecraft para PC</option><option value="freefire">Free Fire en emulador</option><option value="fortnite">Fortnite</option><option value="valorant">VALORANT</option><option value="gta">GTA V</option><option value="ark">ARK: Survival Evolved</option><option value="roblox">Roblox</option><option value="otro">Otro juego de PC</option></select></label>
@@ -72,6 +86,22 @@
         </div><div class="analizador-actions"><button type="submit" class="card-action">Generar recomendaciones</button><button type="reset" class="card-action">Limpiar</button></div>
       </form><p class="analizador-note">La página no puede leer los FPS de otro juego ni detectar tu equipo. Elige el rango que ves con el contador de FPS del juego; analizamos ese dato y damos sugerencias, sin cambiar nada en tu PC.</p>
       <div id="neko-resultado" class="analizador-result" aria-live="polite"><h3>Tu resultado aparecerá aquí</h3><p>Selecciona lo que sepas y toca «Generar recomendaciones».</p></div></div>
+    </section>
+    <section class="section wrap" id="guia-pc">
+      <div class="section-head"><div class="kicker">Sin adivinar componentes</div><h2>¿Cómo revisar las piezas de tu PC?</h2><p>Guía rápida para completar el analizador con datos reales de Windows.</p></div>
+      <div class="guide-grid">
+        <article class="guide-box"><h4>Procesador y RAM</h4><p>En Windows abre Inicio → Configuración → Sistema → Acerca de. Allí aparecen el procesador y la memoria RAM instalada.</p></article>
+        <article class="guide-box"><h4>Tarjeta gráfica y pantalla</h4><p>Presiona Windows + R, escribe dxdiag y abre la pestaña Pantalla. Revisa el nombre del dispositivo gráfico y la resolución.</p></article>
+        <article class="guide-box"><h4>Tipo de disco</h4><p>Abre el Administrador de tareas → Rendimiento → Disco. Windows suele indicar si es SSD o HDD.</p></article>
+        <article class="guide-box"><h4>Fuentes oficiales</h4><p><a href="https://www.microsoft.com/en-us/windows/learning-center/how-to-check-pc-specs" target="_blank" rel="noopener">Guía de Microsoft para ver especificaciones</a> · <a href="https://support.microsoft.com/en-us/windows/hardware/display-graphics/which-version-of-directx-is-on-your-pc" target="_blank" rel="noopener">Abrir dxdiag y revisar DirectX</a>.</p></article>
+      </div>
+    </section>
+    <section class="section wrap" id="medir-fps">
+      <div class="section-head"><div class="kicker">Mediciones reales, no adivinadas</div><h2>Medir y analizar los FPS</h2><p>La web no puede leer el rendimiento de un juego abierto. Usa una herramienta de Windows para capturar una partida y analiza el archivo aquí mismo.</p></div>
+      <div class="tool-panel"><h3>1. Captura una partida en Windows</h3><p>Descarga PresentMon desde Intel o usa CapFrameX. Haz una captura de 30–60 segundos en una escena representativa; cierra capturadores duplicados y descarga solo desde sus páginas oficiales.</p><div class="link-grid"><a href="https://game.intel.com/us/intel-presentmon/" target="_blank" rel="noopener">Intel PresentMon<small>Capturar métricas del juego</small></a><a href="https://github.com/CXWorld/CapFrameX" target="_blank" rel="noopener">CapFrameX<small>Capturas, FPS y tiempos de cuadro</small></a></div>
+      <h3 style="margin-top:22px">2. Carga el CSV y analiza los cuadros</h3><p>El archivo se procesa dentro de tu navegador y no se envía a un servidor. Se aceptan CSV con una columna de tiempo de cuadro, como MsBetweenPresents o FrameTime.</p><label class="csv-picker">Seleccionar un CSV de PresentMon o CapFrameX<input id="csv-upload" type="file" accept=".csv,text/csv" style="display:block;margin-top:10px"></label><div id="csv-result" class="csv-result" aria-live="polite"></div>
+      <h3 style="margin-top:22px">3. Ver gráficas detalladas (opcional)</h3><p>La herramienta independiente Frame Time Analysis acepta archivos de PresentMon y CapFrameX para mostrar gráficas comparativas. No copiamos ni alojamos su código.</p><div class="link-grid"><a href="https://boringboredom.github.io/Frame-Time-Analysis/" target="_blank" rel="noopener">Abrir Frame Time Analysis<small>Comparar tiempos de cuadro y FPS</small></a></div>
+      <p class="analizador-note">Una captura puede contener nombres de procesos y datos de rendimiento. Revísala antes de compartirla. Los resultados varían según el juego, escena y sistema; no son garantía de rendimiento futuro.</p></div>
     </section>
     <section class="section wrap" id="contacto"><div class="contact"><div><div class="kicker">¿Buscas algo en particular?</div><h2>Hablemos de tu partida</h2><p>Cuéntanos qué juego usas y si juegas en PC, emulador o móvil.</p></div><a class="button" href="https://wa.me/573132748008?text=Hola%2C%20vengo%20de%20Neko%20Pixel" target="_blank" rel="noopener">Escribir por WhatsApp <span aria-hidden="true">↗</span></a></div></section>
   </main>
@@ -110,6 +140,11 @@
       if (res === '1440' || res === '2160') tips.push('Si hay caídas, prueba reducir la resolución o activar el escalado disponible en el juego.');
       if (game === 'minecraft') tips.push('En Minecraft, prueba reducir la distancia de renderizado y desactivar shaders si los usas. Las opciones dependen de la edición.');
       if (game === 'freefire') tips.push('En el emulador, prueba una resolución y gráficos moderados. No asignes toda la memoria del PC al emulador.');
+      if (game === 'ark') tips.push('En ARK: Survival Evolved prueba bajar sombras, distancia de visión y detalles del terreno. Compara en la misma zona y revisa las opciones de tu versión.');
+      if (game === 'fortnite') tips.push('En Fortnite prueba el modo de rendimiento si está disponible, reduce sombras y comprueba si el resultado es más estable.');
+      if (game === 'valorant') tips.push('En VALORANT empieza con calidad gráfica baja o media y limita los FPS si tienes fluctuaciones; no cambies archivos del juego ni desactives el antitrampas.');
+      if (game === 'gta') tips.push('En GTA V prueba bajar sombras, población y distancia de visión. Reduce un ajuste a la vez y revisa el uso de memoria gráfica.');
+      if (game === 'roblox') tips.push('En Roblox cambia el modo de gráficos a manual si la experiencia lo permite y reduce la calidad gradualmente.');
       if (problem === 'drops') tips.push('Para tirones, baja un ajuste cada vez, cierra aplicaciones innecesarias y comprueba que el juego no esté descargando o actualizando en segundo plano.');
       if (problem === 'heat') tips.push('Si se calienta, detén la partida si la temperatura es excesiva, despeja las rejillas y revisa ventilación. No desactives protecciones térmicas.');
       if (problem === 'load') tips.push('Para cargas lentas, libera espacio y cierra tareas que usen el disco. Instalar en SSD puede reducir cargas, pero no garantiza más FPS.');
@@ -126,6 +161,16 @@
       copy.addEventListener('click', async function(){try {await navigator.clipboard.writeText(h.textContent + '\n' + status.textContent + '\n' + tips.map(function(t){return '• '+t}).join('\n') + '\n' + note.textContent); copy.textContent='Copiado';} catch(e) {copy.textContent='No se pudo copiar; selecciona el texto';}}); result.appendChild(copy);
     });
   })();
+  </script>
+
+  <script>
+  (function(){
+    var input=document.getElementById('csv-upload'),out=document.getElementById('csv-result');
+    if(!input||!out)return;
+    function splitCSV(line,sep){var a=[],v='',q=false;for(var i=0;i<line.length;i++){var c=line[i];if(c==='"'){if(q&&line[i+1]==='"'){v+='"';i++;}else q=!q;}else if(c===sep&&!q){a.push(v);v='';}else v+=c;}a.push(v);return a;}
+    input.addEventListener('change',function(){var f=input.files&&input.files[0];if(!f)return;if(f.size>30*1024*1024){out.textContent='El archivo supera 30 MB. Exporta una captura más corta e inténtalo de nuevo.';return;}var r=new FileReader();r.onload=function(){try{var text=String(r.result||'').replace(/^\uFEFF/,'');var lines=text.split(/\r?\n/).filter(function(x){return x.trim();});if(lines.length<3)throw Error('El CSV no contiene suficientes mediciones.');var first=lines[0],sep=(first.split(';').length>first.split(',').length)?';':',';var head=splitCSV(first,sep).map(function(x){return x.trim().toLowerCase().replace(/[ _-]/g,'');});var choices=['msbetweenpresents','frametime','frametimems','frametimeinms','frametime(ms)','msbetweenpresentsinms','msbetweendisplaychange'];var idx=-1;for(var j=0;j<choices.length;j++){idx=head.indexOf(choices[j]);if(idx>=0)break;}if(idx<0)throw Error('No encuentro una columna reconocida de tiempo de cuadro. Se necesita MsBetweenPresents o FrameTime en milisegundos.');var times=[];for(var k=1;k<lines.length;k++){var row=splitCSV(lines[k],sep);var n=Number((row[idx]||'').trim().replace(',','.'));if(Number.isFinite(n)&&n>0&&n<10000)times.push(n);}if(times.length<10)throw Error('Encontré menos de 10 tiempos de cuadro válidos. Revisa que subiste el CSV de captura correcto.');times.sort(function(a,b){return a-b;});var sum=times.reduce(function(a,b){return a+b;},0);var avg=1000/(sum/times.length);var slow=times.slice(Math.floor(times.length*.99));var low=1000/(slow.reduce(function(a,b){return a+b;},0)/slow.length);var med=times[Math.floor(times.length*.5)];var stutters=times.filter(function(x){return x>Math.max(33.3,med*1.5);}).length;var p99=times[Math.min(times.length-1,Math.ceil(times.length*.99)-1)];out.replaceChildren();var h=document.createElement('strong');h.textContent='Análisis local de '+f.name;out.appendChild(h);var ul=document.createElement('ul');[['Cuadros analizados',times.length.toLocaleString()],['FPS promedio aproximados',avg.toFixed(1)],['1% bajo aproximado',low.toFixed(1)],['Tiempo de cuadro en el percentil 99',p99.toFixed(2)+' ms'],['Posibles tirones (>33 ms y 1,5× mediana)',stutters.toLocaleString()]].forEach(function(pair){var li=document.createElement('li');li.textContent=pair[0]+': '+pair[1];ul.appendChild(li);});out.appendChild(ul);var note=document.createElement('p');note.textContent='Estimación calculada a partir de tiempos de cuadro; el método del 1% bajo puede variar entre herramientas. Compara capturas de igual duración y escena.';out.appendChild(note);var btn=document.createElement('button');btn.type='button';btn.className='card-action';btn.textContent='Copiar resultados';btn.addEventListener('click',function(){var s=h.textContent+'\n'+Array.from(ul.children).map(function(x){return x.textContent;}).join('\n')+'\n'+note.textContent;navigator.clipboard.writeText(s).then(function(){btn.textContent='Copiado';}).catch(function(){note.textContent=s;});});out.appendChild(btn);}catch(e){out.textContent=e.message||'No se pudo analizar ese archivo. Revisa el formato CSV.';}};r.onerror=function(){out.textContent='No se pudo leer el archivo.';};r.readAsText(f);});
+  })();
+  if('serviceWorker' in navigator && location.protocol.indexOf('http')===0){window.addEventListener('load',function(){navigator.serviceWorker.register('./sw.js').catch(function(){});});}
   </script>
 </body>
 </html>

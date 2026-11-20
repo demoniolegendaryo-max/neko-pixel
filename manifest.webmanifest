@@ -1,0 +1,14 @@
+{
+  "name": "Neko Pixel",
+  "short_name": "Neko Pixel",
+  "description": "Recursos gamer, guías y analizador de FPS",
+  "start_url": "./?source=pwa",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#111113",
+  "theme_color": "#171719",
+  "icons": [
+    {"src": "./icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
+    {"src": "./icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
+  ]
+}
