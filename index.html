@@ -59,14 +59,14 @@
       <div class="section-head"><div class="kicker">Ajustes para tu partida</div><h2>Analizador para PC</h2><p>Elige tu juego y los datos que conozcas. Recibirás ideas para ajustar los gráficos, sin instalar programas.</p></div>
       <div class="analizador-box"><form id="neko-analizador">
         <div class="analizador-grid">
-          <label class="analizador-field">Juego<select name="juego"><option value="minecraft">Minecraft para PC</option><option value="freefire">Free Fire en emulador</option><option value="otro">Otro juego de PC</option></select></label>
+          <label class="analizador-field">Juego<select name="juego"><option value="minecraft">Minecraft para PC</option><option value="freefire">Free Fire en emulador</option><option value="fortnite">Fortnite</option><option value="valorant">VALORANT</option><option value="gta">GTA V</option><option value="ark">ARK: Survival Evolved</option><option value="roblox">Roblox</option><option value="otro">Otro juego de PC</option></select></label>
           <label class="analizador-field">Memoria RAM<select name="ram"><option value="unknown">No sé</option><option value="4">4 GB o menos</option><option value="8">8 GB</option><option value="12">12 GB</option><option value="16">16 GB</option><option value="32">32 GB o más</option></select></label>
           <label class="analizador-field">Procesador (CPU)<select name="cpu"><option value="unknown">No sé</option><option value="basic">Equipo básico o antiguo</option><option value="other">Otro / reciente</option></select></label>
           <label class="analizador-field">Gráficos (GPU)<select name="gpu"><option value="unknown">No sé</option><option value="integrated">Integrados</option><option value="dedicated">Tarjeta gráfica dedicada</option></select></label>
           <label class="analizador-field">Almacenamiento<select name="disco"><option value="unknown">No sé</option><option value="hdd">Disco duro (HDD)</option><option value="ssd">SSD</option></select></label>
           <label class="analizador-field">Resolución de juego<select name="resolucion"><option value="unknown">No sé</option><option value="720">720p</option><option value="1080">1080p</option><option value="1440">1440p</option><option value="2160">4K</option></select></label>
           <label class="analizador-field">¿Qué prefieres?<select name="prioridad"><option value="fluidez">Más fluidez</option><option value="equilibrio">Equilibrio</option><option value="calidad">Mejor calidad visual</option></select></label>
-          <label class="analizador-field">FPS actuales (míralos dentro del juego)<select name="fpsActuales"><option value="unknown">No los he medido</option><option value="30">Menos de 30</option><option value="45">Entre 30 y 59</option><option value="60">Entre 60 y 89</option><option value="90">Entre 90 y 119</option><option value="120">120 o más</option></select></label>
+          <label class="analizador-field">FPS actuales (míralos dentro del juego)<select name="fpsActuales"><option value="unknown">No los he medido</option><option value="0">Menos de 30</option><option value="30">Entre 30 y 59</option><option value="60">Entre 60 y 89</option><option value="90">Entre 90 y 119</option><option value="120">120 o más</option></select></label>
           <label class="analizador-field">Meta de FPS<select name="fps"><option value="30">30 FPS</option><option value="60" selected>60 FPS</option><option value="120">120 FPS o más</option></select></label>
           <label class="analizador-field">Problema que notas<select name="problema"><option value="none">Ninguno en especial</option><option value="drops">Caídas o tirones</option><option value="heat">Se calienta / ventiladores fuertes</option><option value="load">Cargas lentas</option></select></label>
         </div><div class="analizador-actions"><button type="submit" class="card-action">Generar recomendaciones</button><button type="reset" class="card-action">Limpiar</button></div>
@@ -95,7 +95,8 @@
       event.preventDefault();
       var v = new FormData(form);
       var game = v.get('juego'), ram = v.get('ram'), cpu = v.get('cpu'), gpu = v.get('gpu'), disk = v.get('disco'), res = v.get('resolucion'), priority = v.get('prioridad'), fps = v.get('fps'), current = v.get('fpsActuales'), problem = v.get('problema');
-      var name = game === 'minecraft' ? 'Minecraft para PC' : game === 'freefire' ? 'Free Fire en emulador' : 'tu juego de PC';
+      var names = {minecraft:'Minecraft para PC', freefire:'Free Fire en emulador', fortnite:'Fortnite', valorant:'VALORANT', gta:'GTA V', ark:'ARK: Survival Evolved', roblox:'Roblox', otro:'tu juego de PC'};
+      var name = names[game] || 'tu juego de PC';
       var tips = [];
       if (current !== 'unknown' && Number(current) < Number(fps)) tips.push('Tu rango actual está por debajo de la meta elegida. Prueba bajar primero sombras, reflejos y efectos; luego vuelve a mirar el contador en la misma zona.');
       else if (current !== 'unknown') tips.push('Tu rango actual alcanza la meta seleccionada. Para mantener estabilidad, evita subir varios ajustes a la vez y vuelve a comprobar en una escena exigente.');
@@ -118,7 +119,7 @@
       tips.push('Compara el rendimiento en la misma zona del juego y revisa las temperaturas. Usa actualizaciones y controladores de fuentes oficiales.');
       result.replaceChildren();
       var h = document.createElement('h3'); h.textContent = 'Análisis de FPS y ajustes para ' + name; result.appendChild(h);
-      var status = document.createElement('p'); status.textContent = 'Rango indicado: ' + (current === 'unknown' ? 'sin dato' : current + ' FPS aprox.') + ' · Meta: ' + fps + ' FPS'; result.appendChild(status);
+      var status = document.createElement('p'); status.textContent = 'Rango indicado: ' + form.elements.fpsActuales.selectedOptions[0].textContent + ' · Meta: ' + fps + ' FPS'; result.appendChild(status);
       var list = document.createElement('ul'); tips.forEach(function(tip){var li = document.createElement('li');li.textContent = tip;list.appendChild(li)}); result.appendChild(list);
       var note = document.createElement('p'); note.textContent = 'Son puntos de partida, no una medición. Cada juego y equipo puede responder distinto.'; result.appendChild(note);
       var copy = document.createElement('button'); copy.type='button';copy.className='card-action';copy.textContent='Copiar recomendaciones';
